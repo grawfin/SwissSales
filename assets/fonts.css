@@ -1,0 +1,6 @@
+# \assets\fonts.css
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
+
+body {
+    font-family: 'Paytone One';
+}
