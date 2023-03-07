@@ -171,11 +171,76 @@ fig.update_layout(
     margin=dict(l=0, r=0, t=0, b=0),
 )
 
-app = dash.Dash(external_stylesheets=[dbc.themes.CYBORG, dbc.icons.FONT_AWESOME,'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', "https://fonts.googleapis.com/css2?family=Paytone+One&display=swap"])
+app = dash.Dash(
+        external_stylesheets=[
+            dbc.themes.CYBORG,
+            dbc.icons.FONT_AWESOME,
+            'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css',
+            "https://fonts.googleapis.com/css2?family=Paytone+One&display=swap"
+        ]
+    )
+
+pcard = dbc.Card(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    dbc.CardImg(
+                        src="/assets/mugshot-modified.png",
+                        className="img-fluid rounded-start",
+                    ),
+                    className="col-md-4",
+                    style={"margin-left":"1vw","height":"4vh","width":"4vw"}
+                ),
+                dbc.Col(
+                    dbc.CardBody(
+                        [
+                            html.H5("Welcome, GW", className="card-title",style={"color":"white"}),
+                            html.P(
+                                "This is a sample dashboard using static data. It can be easily modified to fit your use case!",
+                                className="card-text",
+                                style={
+                                    "font-size":"14px"
+                                }
+                            ),
+                            html.Small(
+                                "Last login 3 mins ago",
+                                className="card-text text-muted",
+                            ),
+                        ]
+                    ),
+                    className="col-md-8",
+                ),
+            ],
+            className="g-0 d-flex align-items-center",
+        )
+    ],
+    className="mb-3",
+    style={
+        "maxWidth": "540px",
+        "margin-right":"1vw",
+        "margin-left":"1vw",
+        "margin-top":"6vh",
+        "background-color":"#2B323D",
+        "font-family":"'Paytone One'",
+        "color":"#3C799D",
+        "border-weight":"1px",
+        "border-color":"white"
+    },
+)
 
 app.layout = html.Div([
     dbc.Row([
-        html.H3("Your Company Name", style={"font-size":"38px", "font-family":"'Paytone One'", "color":"#3C799D", "margin-top":"2vh","margin-left":"20vw","margin-bottom":"2vh",}),
+        html.H3("Your Company Name",
+            style={
+                "font-size":"4vh",
+                "font-family":"'Paytone One'",
+                "color":"#3C799D",
+                "margin-top":"2vh",
+                "margin-left":"20vw",
+                "margin-bottom":"2vh",
+            }
+        ),
     ],
     style={
         "background-color":"#1C2026",'box-shadow':'6px 6px 6px grey',"width":"100vw"
@@ -185,21 +250,68 @@ app.layout = html.Div([
             dbc.Card(
                 [
                     html.Br(),
-                    html.H2('Swiss Sales Dashboard',style={'font-size':'32px', 'font-family':"'Paytone One'", 'font-weight':'bold',"margin-top":"6vh", "color":"#3C799D"}),
-                    # html.H3("Your Company Name", style={"font-size":"22px", "font-family":"'Paytone One'", "color":"red", "margin-top":"2vh"}),
+                    html.H2(
+                        'Swiss Sales Dashboard',
+                        style={
+                            'font-size':'32px',
+                            'font-family':"'Paytone One'",
+                            'font-weight':'bold',
+                            "margin-top":"6vh",
+                            "color":"#3C799D"
+                        }
+                    ),
+                    pcard,
                     html.Br(),
-                    # html.Img(src="assets/logo2.png", style={'justify':'center', 'height':'39%', 'width':'39%'}),
-                    dbc.Button(id="map",children=[html.I(className="fa fa-map-pin")," Sales Map"], color="rgba(0,0,0,0)",style={"color":"#3C799D","height":"8vh","font-size":"24px","margin-top":"20vh",'font-family':"'Paytone One'"}),
-                    dbc.Button(id="chart",children=[html.I(className="fa fa-line-chart"), "   Sales Statistics"], color="rgba(0,0,0,0)",style={"color":"#3C799D", "font-size":"24px","height":"10vh",'font-family':"'Paytone One'"}),
+                    dbc.Button(
+                        id="map",
+                        children=[
+                            html.I(className="fa fa-map-pin"),
+                            " Sales Map"
+                        ],
+                        color="rgba(0,0,0,0)",
+                        style={
+                            "color":"#3C799D",
+                            "height":"8vh",
+                            "font-size":"24px",
+                            "margin-top":"7vh",
+                            'font-family':"'Paytone One'"
+                        }
+                    ),
+                    dbc.Button(
+                        id="chart",
+                        children=[
+                            html.I(className="fa fa-line-chart"),
+                            "   Sales Statistics"
+                        ],
+                        color="rgba(0,0,0,0)",
+                        style={
+                            "color":"#3C799D",
+                            "font-size":"24px",
+                            "height":"10vh",
+                            'font-family':"'Paytone One'"
+                        }
+                    ),
                     # dbc.Button(id="report",children=[html.I(className="fa fa-file-text"),"  Generate Report"], color="rgba(0,0,0,0)",style={"color":"#3C799D", "font-size":"24px","height":"10vh",'font-family':"'Paytone One'"}),
                     # dbc.Button(id="report",children=["Logout"], color="rgba(0,0,0,0)",style={"color":"red", "font-size":"24px","height":"10vh",'font-family':"'Paytone One'", "border":"3px"}),
-                    dbc.Button(id="report",children=["Logout"],external_link=True, href="https://www.gwcustom.com/copy-of-home", color="rgba(0,0,0,0)",style={"color":"red", "font-size":"24px","height":"10vh",'font-family':"'Paytone One'", "border":"3px"}),
-
+                    dbc.Button(
+                        id="report",
+                        children=["Logout"],
+                        external_link=True,
+                        href="https://www.gwcustom.com/copy-of-home",
+                        color="rgba(0,0,0,0)",
+                        style={
+                            "color":"red",
+                            "font-size":"24px",
+                            "height":"10vh",
+                            'font-family':"'Paytone One'",
+                            "border":"3px"
+                        }
+                    ),
                     dbc.ButtonGroup(
                         [dbc.Button([html.I(className="fa fa-linkedin-square")],external_link=True, href="https://www.linkedin.com/in/griffin-#3C799D-3aa20918a/",target="_blank", color="rgba(0,0,0,0)",style={"color":"#3C799D","font-size":"28px"}),
                          dbc.Button([html.I(className="fa fa-google")],external_link=True, href="https://www.gwcustom.com/",target="_blank", color="rgba(0,0,0,0)",style={"color":"#3C799D","font-size":"28px"}),
                          dbc.Button([html.I(className="fa fa-github")],external_link=True, href="https://github.com/GriffinWhitePortfolio",target="_blank", color="rgba(0,0,0,0)",style={"color":"#3C799D","font-size":"28px"})],
-                         style={"margin-left":"2vw", "margin-right":"2vw", "margin-top":"15vh"}
+                         style={"margin-left":"2vw", "margin-right":"2vw", "margin-top":"4vh"}
                     )
                     # html.Shadow(dcc.RangeSlider(2000, 2022, 2, value=[2000, 2021], id='years'))
 
@@ -211,7 +323,26 @@ app.layout = html.Div([
         dbc.Col(
             id="main-out",
             children=[
-            dbc.Card([html.H1(["Swiss Sales Map     ", html.I(className="fa fa-info-circle")], style={'font-size':'26px',"margin-left":"8vw", "bg-color":"rgba(0,0,0,0)", "color":"#3C799D"})],style={"margin-top":"8vh", "background-color":"rgba(0,0,0,0)",'font-family':"'Paytone One'", 'font-weight':'bold'}),
+            dbc.Card([
+                html.H1(
+                    [
+                        "Swiss Sales Map     ",
+                        html.I(className="fa fa-info-circle")
+                    ],
+                    style={
+                        'font-size':'26px',
+                        "margin-left":"8vw",
+                        "bg-color":"rgba(0,0,0,0)",
+                        "color":"#3C799D"
+                    }
+                )],
+                style={
+                    "margin-top":"8vh",
+                    "background-color":"rgba(0,0,0,0)",
+                    'font-family':"'Paytone One'",
+                    'font-weight':'bold'
+                }
+            ),
             dbc.Card(
                 id="main-graph",
                 children=[
@@ -236,7 +367,7 @@ app.layout = html.Div([
         )
     ])
 # ],style={'background-image':'url(/assets/bg.jpg)','height':'100vh', 'width':'100vw'})
-],style={'background-color':'#2B323D','height':'120vh', 'width':'100vw'})
+],style={'background-color':'#2B323D','height':'110vh', 'width':'100vw'})
 
 
 
@@ -253,7 +384,24 @@ def main_out(map, chart, report, current):
 
     if trigger == "map.n_clicks":
         send = [
-        dbc.Card([html.H1(["Swiss Sales Map     ", html.I(className="fa fa-info-circle")], style={'font-size':'26px',"margin-left":"8vw", "bg-color":"rgba(0,0,0,0)", "color":"#3C799D"})],style={"margin-top":"8vh", "background-color":"rgba(0,0,0,0)",'font-family':"'Paytone One'", 'font-weight':'bold'}),
+        dbc.Card(
+            [html.H1([
+                "Swiss Sales Map     ",
+                html.I(className="fa fa-info-circle")],
+                style={
+                    'font-size':'26px',
+                    "margin-left":"8vw",
+                    "bg-color":"rgba(0,0,0,0)",
+                    "color":"#3C799D"
+                }
+            )],
+            style={
+                "margin-top":"8vh",
+                "background-color":"rgba(0,0,0,0)",
+                'font-family':"'Paytone One'",
+                'font-weight':'bold'
+            }
+        ),
         dbc.Card(
             id="main-graph",
             children=[
@@ -275,53 +423,158 @@ def main_out(map, chart, report, current):
         )]
     elif trigger == "chart.n_clicks":
         send = [
-            dbc.Card([html.H1(["Swiss Sales Statistics     ", html.I(className="fa fa-info-circle")], style={'font-size':'26px',"margin-left":"8vw", "bg-color":"rgba(0,0,0,0)", "color":"#3C799D"})],style={"margin-top":"8vh", "background-color":"rgba(0,0,0,0)",'font-family':"'Paytone One'", 'font-weight':'bold'}),
+            dbc.Card(
+                [
+                    html.H1(
+                        [
+                            "Swiss Sales Statistics     ",
+                            html.I(className="fa fa-info-circle")
+                        ],
+                        style={
+                            'font-size':'26px',
+                            "margin-left":"8vw",
+                            "bg-color":"rgba(0,0,0,0)",
+                            "color":"#3C799D"
+                        }
+                    )
+                ],
+                style={
+                    "margin-top":"8vh",
+                    "background-color":"rgba(0,0,0,0)",
+                    'font-family':"'Paytone One'",
+                    'font-weight':'bold'
+                }
+            ),
             dbc.Row([
                 dbc.Col([
                     dbc.Card([
                         dcc.Graph(
                             figure=pie
-                        )],style={'box-shadow':'6px 6px 6px grey','background-color':'#1C2026',"font-family":"'Paytone One'","color":"#3C799D", "border-radius":"20px","height":"36vh"})
-                    ], width=4),
-
+                        )],
+                        style={
+                            'box-shadow':'6px 6px 6px grey',
+                            'background-color':'#1C2026',
+                            "font-family":"'Paytone One'",
+                            "color":"#3C799D",
+                            "border-radius":"20px",
+                            "height":"36vh"
+                        }
+                    )
+                ], width=4),
                 dbc.Col([
                     dbc.Card([
-                        daq.Gauge(
-                            color={"gradient":True,"ranges":{"red":[0,0.6],"yellow":[0.6,0.8],"green":[0.8,1]}},
-                            value=0.6,
-                            label={'label':'Sales to Inventory Ratio','style':{"font-size":"22px","margin-top":"1vh"}},
-                            max=1,
-                            min=0,
-                        )],style={'box-shadow':'6px 6px 6px grey','background-color':'#1C2026',"font-family":"'Paytone One'","color":"#3C799D", "border-radius":"20px","height":"36vh"})
-                    ], width=4),
+                        dbc.Row([
+                            dbc.Col([
+                                daq.Gauge(
+                                    color={"gradient":True,"ranges":{"red":[0,0.6],"yellow":[0.6,0.8],"green":[0.8,1]}},
+                                    value=0.6,
+                                    label={'label':'Sales to Inventory Ratio','style':{"font-size":"22px","margin-top":"1vh"}},
+                                    max=1,
+                                    min=0,
+                                )
+                            ],
+                            width=9),
+                            dbc.Col([
+                                html.H1("0.6",
+                                    style={
+                                        "color":"yellow",
+                                        "font-size":"32px",
+                                        "margin-top":"10vh"
+                                    }
+                                )
+                            ],
+                            width=3)
+                        ])
+                    ],
+                    style={
+                        'box-shadow':'6px 6px 6px grey',
+                        'background-color':'#1C2026',
+                        "font-family":"'Paytone One'",
+                        "color":"#3C799D",
+                        "border-radius":"20px",
+                        "height":"36vh"
+                    }
+                )], width=4),
                 dbc.Col([
                     dbc.Card([
-                        daq.Gauge(
-                            color={"gradient":True,"ranges":{"red":[0,0.6],"yellow":[0.6,0.8],"green":[0.8,1]}},
-                            value=0.85,
-                            label={'label':'Industry Percentile','style':{"font-size":"22px","margin-top":"1vh"}},
-                            max=1,
-                            min=0,
-                        )],style={'box-shadow':'6px 6px 6px grey','background-color':'#1C2026',"font-family":"'Paytone One'","color":"#3C799D", "border-radius":"20px","height":"36vh"})
-                    ], width=4),
-                ], style={"margin-right":"4vw","margin-left":"4vw","margin-top":"6vh"}),
+                        dbc.Row([
+                            dbc.Col([
+                                daq.Gauge(
+                                    color={"gradient":True,"ranges":{"red":[0,0.6],"yellow":[0.6,0.8],"green":[0.8,1]}},
+                                    value=0.864,
+                                    label={'label':'Industry Percentile','style':{"font-size":"22px","margin-top":"1vh"}},
+                                    max=1,
+                                    min=0,
+                                )
+                            ],width=9),
+                            dbc.Col([
+                                html.H1("0.86",
+                                    style={
+                                        "color":"green",
+                                        "font-size":"32px",
+                                        "margin-top":"10vh"
+                                    }
+                                )
+                            ],
+                            width=3)
+                        ])
+                    ],
+                    style={
+                        'box-shadow':'6px 6px 6px grey',
+                        'background-color':'#1C2026',
+                        "font-family":"'Paytone One'",
+                        "color":"#3C799D",
+                        "border-radius":"20px",
+                        "height":"36vh"
+                    }
+                )],
+                width=4
+                ),],
+                style={
+                    "margin-right":"4vw",
+                    "margin-left":"4vw",
+                    "margin-top":"6vh"
+                }
+            ),
             dbc.Row([
                 dbc.Col([
                     dbc.Card([
                         dcc.Graph(
                             figure=fig3
-                        )
-                        ],style={'box-shadow':'6px 6px 6px grey','background-color':'#1C2026',"font-family":"'Paytone One'","color":"#3C799D", "border-radius":"20px","margin-top":"3vh"})
-                    ], width=3),
+                        )],
+                        style={
+                            'box-shadow':'6px 6px 6px grey',
+                            'background-color':'#1C2026',
+                            "font-family":"'Paytone One'",
+                            "color":"#3C799D",
+                            "border-radius":"20px",
+                            "margin-top":"3vh"
+                        }
+                    )], width=5
+                ),
                 dbc.Col([
                     dbc.Card([
                         dcc.Graph(
                             figure=fig4
-                        )
-                    ], style={'box-shadow':'6px 6px 6px grey','background-color':'#1C2026',"font-family":"'Paytone One'","color":"#3C799D", "border-radius":"20px", "margin-top":"3vh"})
-                ],width=9)
-            ], style={"margin-bottom":"20vh","margin-right":"4vw","margin-left":"4vw","margin-top":"3vh"})
-        ]
+                        )],
+                        style={
+                            'box-shadow':'6px 6px 6px grey',
+                            'background-color':'#1C2026',
+                            "font-family":"'Paytone One'",
+                            "color":"#3C799D",
+                            "border-radius":"20px",
+                            "margin-top":"3vh"
+                        }
+                    )
+                ],width=7)
+            ],
+            style={
+                "margin-bottom":"20vh",
+                "margin-right":"4vw",
+                "margin-left":"4vw",
+                "margin-top":"3vh"
+            }
+        )]
     # elif trigger == "report.n_clicks":
     #     # send = [dbc.Card([html.H1(["Swiss Sales Report Generation     ", html.I(className="fa fa-info-circle")], style={'font-size':'26px',"margin-left":"8vw", "bg-color":"rgba(0,0,0,0)"})],style={"margin-top":"8vh", "background-color":"rgba(0,0,0,0)",'font-family':"'Paytone One'", 'font-weight':'bold', "border-radius":"20px"}),]
     #     #3C799D
